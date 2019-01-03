@@ -7,6 +7,8 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
+  AsyncStorage
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -37,12 +39,14 @@ export default class HomeScreen extends React.Component {
 
             <Text style={styles.getStartedText}>Get started by opening</Text>
 
+            <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
+
             <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
               <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
             </View>
 
             <Text style={styles.getStartedText}>
-              It better.
+              Made a change.
             </Text>
           </View>
 
@@ -63,6 +67,11 @@ export default class HomeScreen extends React.Component {
       </View>
     );
   }
+
+  _signOutAsync = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate('Auth');
+  };
 
   _maybeRenderDevelopmentModeWarning() {
     if (__DEV__) {
