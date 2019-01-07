@@ -1,0 +1,98 @@
+{
+  "routineName": "Greyskull LP Phraks Variant",
+  "uuid": "aaae83bd-8920-4885-b805-1cbb9c274590",
+  "daysPerWeek": 3,
+  "lifts": [
+    {
+      "liftName": "Barbell Bench Press",
+      "liftDayRepetition": [0,1],
+      "sets": [
+        5,
+        5,
+        5
+      ],
+      "lastSetAMRAP": true,
+      "progressionPattern": {
+        "type": "linear",
+        "add": 2.5,
+        "deloadPercent": 10
+      }
+    },
+    {
+      "liftName": "Barbell Overhead Press",
+      "liftDayRepetition": [1,0],
+      "sets": [
+        5,
+        5,
+        5
+      ],
+      "lastSetAMRAP": true,
+      "progressionPattern": {
+        "type": "linear",
+        "add": 2.5,
+        "deloadPercent": 10
+      }
+    },
+    {
+      "liftName": "Barbell Bent-over Row",
+      "liftDayRepetition": [0,1],
+      "sets": [
+        5,
+        5,
+        5
+      ],
+      "lastSetAMRAP": true,
+      "progressionPattern": {
+        "type": "linear",
+        "add": 2.5,
+        "deloadPercent": 10
+      }
+    },
+    {
+      "liftName": "Chinup",
+      "liftDayRepetition": [1,0],
+      "sets": [
+        5,
+        5,
+        5
+      ],
+      "lastSetAMRAP": true,
+      "progressionPattern": {
+        "type": "reps",
+        "unit": "reps",
+        "add": 1,
+        "deloadPercent": 10
+      }
+    },
+    {
+      "liftName": "Barbell Squat",
+      "liftDayRepetition": [1,0,1],
+      "sets": [
+        5,
+        5,
+        5
+      ],
+      "lastSetAMRAP": true,
+      "progressionPattern": {
+        "type": "linear",
+        "add": 5,
+        "deloadPercent": 10
+      }
+    },
+    {
+      "liftName": "Deadlift",
+      "liftDayRepetition": [0,1,0],
+      "sets": [
+        5,
+        5,
+        5
+      ],
+      "lastSetAMRAP": true,
+      "progressionPattern": {
+        "type": "linear",
+        "add": 5,
+        "deloadPercent": 10
+      }
+    }
+  ]
+}
