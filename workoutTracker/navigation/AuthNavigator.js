@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform, AsyncStorage, View, Button, StyleSheet} from 'react-native';
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 import { createStackNavigator } from 'react-navigation';
+import SignInScreen from '../screens/SignInScreen';
 
 const styles = StyleSheet.create({
     container: {
@@ -10,46 +11,6 @@ const styles = StyleSheet.create({
       borderColor: '#d6d7da',
     }
 });
-
-class SignInScreen extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        username: '',
-        password: ''
-      };
-    }
-
-    static navigationOptions = {
-      title: 'Login',
-    };
-  
-    render() {
-      return (
-        <View style={styles.container}>
-          <FormInput placeholder='Username' onChangeText={(text) => this.setState({username: text})}/>
-          <FormInput placeholder='Password' onChangeText={(text) => this.setState({password: text})}/>
-          <FormValidationMessage> </FormValidationMessage>
-          <Button title="Sign in!" onPress={this._signInAsync} />
-          <Button title="Forgot Password" onPress={this._navigateForgotPW} />
-          <Button title="Don't have an Account?" onPress={this._navigateSignUp} />
-        </View>
-      );
-    }
-  
-    _signInAsync = async () => {
-      await AsyncStorage.setItem('userToken', 'abc');
-      this.props.navigation.navigate('Main');
-    };
-
-    _navigateForgotPW = () => {
-      this.props.navigation.navigate('ForgotPWScreen');
-    }
-
-    _navigateSignUp = () => {
-      this.props.navigation.navigate('CreateAccountScreen');
-    }
-}
 
 class CreateAccountScreen extends React.Component {
   constructor(props) {
