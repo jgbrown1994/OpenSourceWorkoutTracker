@@ -1,14 +1,22 @@
 import React from 'react';
-import { Platform, AsyncStorage, View, Button, StyleSheet, ImageBackground, Image} from 'react-native';
+import { Platform, AsyncStorage, View, TouchableOpacity, StyleSheet, ImageBackground, Image} from 'react-native';
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 4,
-    borderWidth: 0.5,
-    borderColor: '#d6d7da',
     flex: 1,
-    justifyContent: 'space-around'
+    justifyContent: 'space-evenly'
+  },
+  backgroundStyle: {
+    width: '100%',
+    height: '100%',
+    alignItems: 'center'
+  },
+  formInputStyle: {
+    color: 'red',
+    fontSize: 40,
+    fontFamily: 'Academy Engraved LET', // Should also have one for Android!
+    textAlign: 'center'
   }
 });
 
@@ -28,28 +36,64 @@ export default class SignInScreen extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={require('../assets/images/diamondPlate.png')} style={{width: '100%', height: '100%'}} >
-        <View style={styles.container}>
+      <ImageBackground source={require('../assets/images/diamondPlate.png')}
+        imageStyle={{resizeMode:'stretch'}}
+        style={styles.backgroundStyle}
+      >
           <FormInput
+            containerStyle={{flex: 2.5, paddingTop: 50, paddingStart: 100, paddingEnd: 100}}
+            inputStyle={styles.formInputStyle}
             placeholder='Username'
+            placeholderTextColor='red'
             maxLength={30}
             onChangeText={(text) => this.setState({username: text})}
           />
           <FormInput
+            containerStyle={{flex: 2.5, paddingTop: 20, paddingLeft: 100, paddingRight: 100}}
+            inputStyle={styles.formInputStyle}
             placeholder='Password'
+            placeholderTextColor='red'
             maxLength={30}
             secureTextEntry
             onChangeText={(text) => this.setState({password: text})}
           />
           <FormValidationMessage> {this.state.errorMsg} </FormValidationMessage>
-          <Button title="Login" onPress={this._signInAsync} />
-          <Button title="Forgot?" onPress={this._navigateForgotPW} />
-          <Button title="Sign up!" onPress={this._navigateSignUp} />
-          <Image
-            source={require('../assets/images/appLogo.png')}
-            transform={[{scale: 0.5}, {rotate: '20deg'}]}
-          />
-        </View>
+          <TouchableOpacity onPress={this._signInAsync} style={{flex: 4}} >
+            <Image
+              style={{flex: 1}}
+              source={require('../assets/images/loginButton.png')}
+              resizeMode='contain'
+            />
+          </TouchableOpacity>
+          <View style={{flexDirection: 'row', flex: 1.5}} >
+            <TouchableOpacity onPress={this._navigateForgotPW} style={{flex: 3}} >
+              <Image
+                style={{flex: 1}}
+                source={require('../assets/images/forgotButton.png')}
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={this._navigateSignUp} style={{flex: 3}} >
+              <Image
+                style={{flex: 1}}
+                source={require('../assets/images/signUpButton.png')}
+                resizeMode='contain'
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{flex: 10}}>
+            <Image
+              style={{flex: 1}}
+              source={require('../assets/images/appLogo.png')}
+              transform={[{rotate: '20deg'}]}
+              resizeMode='contain'
+            />
+            <Image
+              style={{flex: 1}}
+              source={require('../assets/images/muscleMan.png')}
+              resizeMode='contain'
+            />
+          </View>
       </ImageBackground>
     );
   }
