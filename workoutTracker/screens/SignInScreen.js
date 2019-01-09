@@ -61,7 +61,7 @@ export default class SignInScreen extends React.Component {
           <TouchableOpacity onPress={this._signInAsync} style={{flex: 4}} >
             <Image
               style={{flex: 1}}
-              source={require('../assets/images/loginButton.png')}
+              source={require('../assets/images/signInPage/loginButton.png')}
               resizeMode='contain'
             />
           </TouchableOpacity>
@@ -69,14 +69,14 @@ export default class SignInScreen extends React.Component {
             <TouchableOpacity onPress={this._navigateForgotPW} style={{flex: 3}} >
               <Image
                 style={{flex: 1}}
-                source={require('../assets/images/forgotButton.png')}
+                source={require('../assets/images/signInPage/forgotButton.png')}
                 resizeMode='contain'
               />
             </TouchableOpacity>
             <TouchableOpacity onPress={this._navigateSignUp} style={{flex: 3}} >
               <Image
                 style={{flex: 1}}
-                source={require('../assets/images/signUpButton.png')}
+                source={require('../assets/images/signInPage/signUpButton.png')}
                 resizeMode='contain'
               />
             </TouchableOpacity>
@@ -84,7 +84,7 @@ export default class SignInScreen extends React.Component {
           <View style={{flex: 10}}>
             <Image
               style={{flex: 1}}
-              source={require('../assets/images/appLogo.png')}
+              source={require('../assets/images/signInPage/appLogo.png')}
               transform={[{rotate: '20deg'}]}
               resizeMode='contain'
             />
