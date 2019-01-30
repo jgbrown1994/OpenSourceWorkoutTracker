@@ -1,6 +1,9 @@
 import React from 'react';
 import { Platform, AsyncStorage, View, TouchableOpacity, StyleSheet, ImageBackground, Image} from 'react-native';
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import { LogoAndMuscleMan } from '../components/LogoAndMuscleMan';
+import { ImageButton } from '../components/ImageButton';
+import { StyledFormInput } from '../components/StyledFormInput';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,60 +43,40 @@ export default class SignInScreen extends React.Component {
         imageStyle={{resizeMode:'stretch'}}
         style={styles.backgroundStyle}
       >
-          <FormInput
-            containerStyle={{flex: 2.5, paddingTop: 50, paddingStart: 100, paddingEnd: 100}}
-            inputStyle={styles.formInputStyle}
-            placeholder='Username'
-            placeholderTextColor='red'
-            maxLength={30}
-            onChangeText={(text) => this.setState({username: text})}
+        <StyledFormInput
+          flex={2.5}
+          paddingTop={50}
+          placeholder='Username'
+          onChangeText={(text) => this.setState({username: text})}
+        />
+        <FormInput
+          containerStyle={{flex: 2.5, paddingTop: 20, paddingLeft: 100, paddingRight: 100}}
+          inputStyle={styles.formInputStyle}
+          placeholder='Password'
+          placeholderTextColor='red'
+          maxLength={30}
+          secureTextEntry
+          onChangeText={(text) => this.setState({password: text})}
+        />
+        <FormValidationMessage> {this.state.errorMsg} </FormValidationMessage>
+        <ImageButton
+          onPress={this._signInAsync}
+          style={{flex: 4}}
+          imagePath='signInPage.loginButton'
+        />
+        <View style={{flexDirection: 'row', flex: 1.5}} >
+          <ImageButton
+            onPress={this._navigateForgotPW}
+            style={{flex: 3}}
+            imagePath='signInPage.forgotButton'
           />
-          <FormInput
-            containerStyle={{flex: 2.5, paddingTop: 20, paddingLeft: 100, paddingRight: 100}}
-            inputStyle={styles.formInputStyle}
-            placeholder='Password'
-            placeholderTextColor='red'
-            maxLength={30}
-            secureTextEntry
-            onChangeText={(text) => this.setState({password: text})}
+          <ImageButton
+            onPress={this._navigateSignUp}
+            style={{flex: 3}}
+            imagePath='signInPage.signUpButton'
           />
-          <FormValidationMessage> {this.state.errorMsg} </FormValidationMessage>
-          <TouchableOpacity onPress={this._signInAsync} style={{flex: 4}} >
-            <Image
-              style={{flex: 1}}
-              source={require('../assets/images/signInPage/loginButton.png')}
-              resizeMode='contain'
-            />
-          </TouchableOpacity>
-          <View style={{flexDirection: 'row', flex: 1.5}} >
-            <TouchableOpacity onPress={this._navigateForgotPW} style={{flex: 3}} >
-              <Image
-                style={{flex: 1}}
-                source={require('../assets/images/signInPage/forgotButton.png')}
-                resizeMode='contain'
-              />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={this._navigateSignUp} style={{flex: 3}} >
-              <Image
-                style={{flex: 1}}
-                source={require('../assets/images/signInPage/signUpButton.png')}
-                resizeMode='contain'
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{flex: 10}}>
-            <Image
-              style={{flex: 1}}
-              source={require('../assets/images/signInPage/appLogo.png')}
-              transform={[{rotate: '20deg'}]}
-              resizeMode='contain'
-            />
-            <Image
-              style={{flex: 1}}
-              source={require('../assets/images/muscleMan.png')}
-              resizeMode='contain'
-            />
-          </View>
+        </View>
+        <LogoAndMuscleMan style={{flex: 10}} />
       </ImageBackground>
     );
   }
@@ -125,6 +108,6 @@ export default class SignInScreen extends React.Component {
   }
 
   _navigateSignUp = () => {
-    this.props.navigation.navigate('CreateAccountScreen');
+    this.props.navigation.navigate('SignUpScreen');
   }
 }
