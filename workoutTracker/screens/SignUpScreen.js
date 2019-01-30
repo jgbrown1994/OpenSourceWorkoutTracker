@@ -66,7 +66,8 @@ export default class ForgotScreen extends React.Component {
           placeholder='Password'
           placeholderTextColor='red'
           maxLength={30}
-          onChangeText={(pwText) => this.setState({password: pwText})}
+          secureTextEntry
+          onChangeText={(pwText) => this.setState({password: pwText, confirmPassword: ''})}
         />
         <FormInput
           containerStyle={{flex: 2.5, paddingTop: 20, paddingStart: 100, paddingEnd: 100}}
@@ -74,6 +75,7 @@ export default class ForgotScreen extends React.Component {
           placeholder='Confirm Password'
           placeholderTextColor='red'
           maxLength={30}
+          secureTextEntry
           onChangeText={(confirmText) => this.setState({confirmPassword: confirmText})}
         />
         <FormValidationMessage> {this.state.errMsg} </FormValidationMessage>
@@ -87,7 +89,42 @@ export default class ForgotScreen extends React.Component {
     );
   }
 
+  /*
+    signUpObject will look like:
+      {
+        username: [string],
+        password: [string],
+        confirmPassword: [string],
+        email: [string]
+      }
+  */
+  _areSignUpFieldsValid = (signUpObject) => {
+    // TODO should expand validation based on server requirements
+    if (signUpObject.username === '') {
+      this.setState({errMsg: 'Username is required'});
+      return false;
+    }
+    if (signUpObject.password === '') {
+      this.setState({errMsg: 'Password is required'});
+      return false;
+    }
+    if (signUpObject.confirmPassword === '') {
+      this.setState({errMsg: 'You must confirm your password'});
+      return false;
+    }
+    if (signUpObject.confirmPassword !== signUpObject.password) {
+      this.setState({errMsg: 'Passwords do not match'});
+      return false;
+    }
+    if (signUpObject.email === '') {
+      this.setState({errMsg: 'Email is required'});
+      return false;
+    }
+    return true;
+  }
+
   _signUpAsync = async () => {
+    if (!this._areSignUpFieldsValid(this.state)) return;
     await AsyncStorage.setItem('userToken', 'abc');
     this.props.navigation.navigate('Main'); // should go to a startup about the app screen and profile completion
   };
